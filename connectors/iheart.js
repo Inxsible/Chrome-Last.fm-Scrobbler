@@ -36,6 +36,26 @@ $(function () {
             waitForDuration(updateNowPlaying);
             c = 0;
         })
+	$(".js-nowplaying-song").bind("DOMSubtreeModified", function (e) {
+            //avoids being executed twice
+            if (c == 0) {
+                c++;
+                return false;
+            }
+            //cancel any previous timeout
+            if (scrobbleTimeout != null) clearTimeout(scrobbleTimeout);
+            if (durationTimeout != null) clearTimeout(durationTimeout);
+            //delay notification slightly
+            setTimeout(function () {
+                artist = $(".js-nowplaying-artist").text();
+                track = $(".js-nowplaying-song").text();
+                duration = $(".js-duration").text();
+            }, 1000);
+            displayMsg()
+            //song duration on page updates as the music gets loaded by the browser
+            waitForDuration(updateNowPlaying);
+            c = 0;
+        })
     })
 });
 
