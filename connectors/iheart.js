@@ -27,8 +27,8 @@ $(function () {
             if (durationTimeout != null) clearTimeout(durationTimeout);
             //delay notification slightly
             setTimeout(function () {
-                artist = $(".js-artist-name").attr("title");
-                track = $(".js-track-name").attr("title");
+                artist = $(".js-artist-name").text();
+                track = $(".js-track-name").text();
                 duration = $(".js-duration").text();
             }, 1000);
             displayMsg()
